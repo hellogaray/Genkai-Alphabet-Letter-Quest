@@ -1,0 +1,129 @@
+/* Define CSS custom properties */
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+  --primary-color: #f0f0f0;
+  --border-color: #e0e0e0;
+  --text-color: #333;
+  --background-color: #fff;
+  --container-border: #d1d1d1;
+}
+
+/* Body styles */
+body {
+  margin: 0;
+  display: flex; 
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100vh; /* Minimum height to fill viewport */
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+/* Title styles */
+#title {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Main container */
+canvas {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+#score {
+  border-bottom: 1px dotted var(--border-color);
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: var(--text-color);
+  text-transform: uppercase;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--background-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Content area */
+#content {
+  padding-top: 5rem;
+  flex: 1;
+}
+
+/* Sidebar */
+#bottomMenu, #topMenu {
+  margin: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Button styles */
+button {
+  font-size: .8rem;
+  text-transform: uppercase;
+  width: 60px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--container-border);
+  background-color: var(--background-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+}
+
+/* Styled link styles */
+.styled-link {
+  font-size: 14px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.styled-link:hover {
+  color: #ffffff;
+}
+
+/* Footer styles */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  border-top: 1px solid var(--border-color); /* Optional: add a border at the top */
+  margin-top: 20px; /* Optional: adjust margin */
+}
+
+/* Footer link styles */
+footer a {
+  margin: 0 10px; /* Optional: adjust margin between links */
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff; /* Change color on hover */
+}
