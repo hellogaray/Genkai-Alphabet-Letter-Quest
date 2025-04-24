@@ -4,52 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>玄海みらいのアルファベットクエスト</title>
-  <link rel="stylesheet" href="style.css"> <!-- <--- missing > fixed -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
-  <!-- Title -->
+  <!-- Logo & Header -->
   <header id="title">
     <img src="./images/logo.png" id="logo">
   </header>
   
   <!-- Main content area -->
   <main id="content">
+    <section id="container" aria-label="Drawing area">
+      <!-- Results -->
+      <div id="score"></div>
 
-      <section id="container" aria-label="Drawing area">
+      <!-- Canvas -->
+      <div id="game">
+        <canvas id="myCanvas" width="493" height="490">
+        </canvas>
+      </div>
 
-        <!-- Top menu navigation -->
-        <nav id="topMenu" aria-label="Sidebar">
-
-        </nav>
-
-        <!-- Canvas -->
-        <div id="game">
-          <canvas id="myCanvas" width="493" height="490">
-          </canvas>
-        </div>
-
-        <!-- Results -->
-        <div id="score"></div>
-
-        <!-- Bottom menu navigation -->
-        <nav id="bottomMenu" aria-label="Sidebar">
-          <button id="playBtn">Play</button>
-          <button id="clearBtn">Clear</button>
-          <button id="finishBtn">Finish</button>
-        </nav>
-      </section>
-
-      <!-- Example -->
-
+      <!-- Bottom menu navigation -->
+      <nav id="bottomMenu" aria-label="Sidebar">
+        <button id="playBtn">Play</button>
+        <button id="clearBtn">Clear</button>
+        <button id="finishBtn">Finish</button>
+      </nav>
+    </section>
   </main>
-
-
 
   <!-- Footer -->
   <footer>
-      <a href="https://github.com/hellogaray" title="Github Link" class="styled-link">@hellogaray</a>
+    <a href="https://github.com/hellogaray" title="Github Link" class="styled-link">@hellogaray</a>
   </footer>
 
   <!-- Script -->

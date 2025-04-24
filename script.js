@@ -74,8 +74,8 @@ function drawLetter(letter) {
       // Draw the image, but leave out the last 4px from the bottom
       ctx.drawImage(
           img,
-          0, 0, img.width, img.height - 4, // source (cut bottom 4px)
-          0, 0, canvas.width, canvas.height - (4 * canvas.height / img.height) // scale accordingly
+          0, 0, img.width, img.height - 16, // source (cut bottom 4px)
+          0, 0, canvas.width, canvas.height - (16 * canvas.height / img.height) // scale accordingly
       );
   };
 }
