@@ -83,11 +83,14 @@ button {
   border: 1px solid var(--container-border);
   background-color: var(--background-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 button:hover {
   color: var(--background-color);
   background-color: var(--text-color);
+  transform: translateY(2px);
 }
 
 /* Styled link styles */
