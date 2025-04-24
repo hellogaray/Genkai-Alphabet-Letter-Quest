@@ -38,16 +38,16 @@ canvas.addEventListener('mousemove', (event) => {
 
     const pixel = ctx.getImageData(event.offsetX, event.offsetY, 1, 1).data;
     const [r, g, b, a] = pixel;
-    const isBlue = (r === 168 && g === 218 && b === 220 && a === 255);
-    const isWhite = (r === 241 && g === 250 && b === 238 && a === 255);
+    const isBerkeleyBlue = (r === 168 && g === 218 && b === 220 && a === 255);
+    const isHoneydew = (r === 241 && g === 250 && b === 238 && a === 255);
 
-    if (isBlue) {
+    if (isBerkeleyBlue) {
         ctx.strokeStyle = '#1D3557';
         ctx.lineTo(event.offsetX, event.offsetY);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(event.offsetX, event.offsetY);
-    } else if (isWhite) {
+    } else if (isHoneydew) {
         ctx.strokeStyle = '#E63946';
         ctx.lineTo(event.offsetX, event.offsetY);
         ctx.stroke();
@@ -86,18 +86,18 @@ playBtn.addEventListener('click', function() {
     console.log(item)
     drawLetter(item);
 
-    const counts = { red: 0, lightBlue: 0, blue: 0 };
+    const counts = { redPantone: 0, nonPhotoBlue: 0, berkeleyBlue: 0 };
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     
     for (let i = 0; i < pixels.length; i += 4) {
         const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
         if (a !== 255) continue;
-        if (r === 230 && g === 57 && b === 70) counts.red++;
-        else if (r === 168 && g === 218 && b === 220) counts.lightBlue++;
-        else if (r === 29 && g === 53 && b === 87) counts.blue++;
+        if (r === 230 && g === 57 && b === 70) counts.redPantone++;
+        else if (r === 168 && g === 218 && b === 220) counts.nonPhotoBlue++;
+        else if (r === 29 && g === 53 && b === 87) counts.berkeleyBlue++;
     }
     count++;
-    results = Math.round(((counts.blue / (counts.blue + counts.red + counts.lightBlue)) * 100));
+    results = Math.round(((counts.berkeleyBlue / (counts.berkeleyBlue + counts.redPantone + counts.nonPhotoBlue)) * 100));
     finalScore += results;
 
     if (results >= 90) scoreDiv.innerHTML = 'Perfect';
@@ -110,13 +110,25 @@ playBtn.addEventListener('click', function() {
 
 // Clear button functionality
 clearBtn.addEventListener('click', function() {
+    // Clear the canvas
     drawLetter(item);
 });
 
 // Finish button functionality
 finishBtn.addEventListener('click', function() {
-    finalScore = finalScore / count;
-    console.log(`Final Score: ${finalScore}`);
+  if (count === 0) {
+      console.warn('Cannot calculate average score: count is zero.');
+      return;
+  }
+
+  const averageScore = finalScore / count;
+  console.log(`Item: ${item} | Score: ${results} | Count: ${count} | Final Result: ${averageScore}`);
+  console.log(`Final Score: ${averageScore}`);
+
+  // Reset scores
+  results = 0;
+  score = 0;
+  finalScore = 0;
 });
 
 // Start the first letter

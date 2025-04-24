@@ -1,11 +1,20 @@
 /* Define CSS custom properties */
 :root {
+  --grid-cols: 1;
+  --grid-rows: 1;
   --primary-color: #f0f0f0;
   --border-color: #e0e0e0;
-  --text-color: #1D3557;
+  --text-color: #333;
   --background-body: #f1faee;
   --background-color: #fff;
   --container-border: #d1d1d1;
+
+  /* Palette */
+  --red-pantone: #e63946ff;
+  --honeydew: #f1faeeff;
+  --non-photo-blue: #a8dadcff;
+  --cerulean: #457b9dff;
+  --berkeley-blue: #1d3557ff;
 }
 
 /* Body styles */
@@ -23,10 +32,15 @@ body {
 
 /* Title styles */
 #title {
-  font-size: 2rem;
-  margin-top: 20px;
+  margin: 0;
   color: var(--text-color);
   text-align: center;
+}
+
+#logo {
+  width: 20%;
+  height: auto;
+  position: relative;
 }
 
 /* Main container */
@@ -60,7 +74,6 @@ canvas {
 
 /* Content area */
 #content {
-  padding-top: 2rem;
   flex: 1;
 }
 
