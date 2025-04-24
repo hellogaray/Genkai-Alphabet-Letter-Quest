@@ -1,7 +1,6 @@
 // Get DOM elements
 const canvas = document.getElementById('myCanvas');
 const playBtn = document.getElementById('playBtn');
-const submitBtn = document.getElementById('submitBtn');
 const clearBtn = document.getElementById('clearBtn');
 const finishBtn = document.getElementById('finishBtn');
 const scoreDiv = document.getElementById('score');
@@ -16,14 +15,16 @@ const alphabet = [
 ];
 
 // Initialize variables
-let drawing = false;
-let item = NaN;
 let finalScore = 0;
 let count = 0;
+let results = 0;
+let drawing = false;
+let item = alphabet[Math.floor(Math.random() * alphabet.length)];
 let img = document.createElement("img");
 
 // Event listeners for drawing
 canvas.addEventListener('mousedown', () => drawing = true);
+
 canvas.addEventListener('mouseup', () => {
     drawing = false;
     ctx.beginPath();
@@ -58,12 +59,12 @@ canvas.addEventListener('mousemove', (event) => {
 // Function to draw the letter
 function drawLetter(letter) {
   const img = new Image();
+  // Add -Upper or -Lower depending on charCode.
   if (letter.charCodeAt(0) < 97) { 
     img.src = `./images/${letter}-Upper.png`;
   } else {
     img.src = `./images/${letter}-Lower.png`;
   }
- 
 
   img.onload = function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,17 +80,12 @@ function drawLetter(letter) {
   };
 }
 
-
-
 // Play button functionality
 playBtn.addEventListener('click', function() {
     item = alphabet[Math.floor(Math.random() * alphabet.length)];
     console.log(item)
     drawLetter(item);
-});
 
-// Submit button functionality
-submitBtn.addEventListener('click', function() {
     const counts = { red: 0, lightBlue: 0, blue: 0 };
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     
@@ -100,17 +96,16 @@ submitBtn.addEventListener('click', function() {
         else if (r === 168 && g === 218 && b === 220) counts.lightBlue++;
         else if (r === 29 && g === 53 && b === 87) counts.blue++;
     }
-
-    const results = Math.round(((counts.blue / (counts.blue + counts.red + counts.lightBlue)) * 100));
-    finalScore += results;
     count++;
+    results = Math.round(((counts.blue / (counts.blue + counts.red + counts.lightBlue)) * 100));
+    finalScore += results;
 
     if (results >= 90) scoreDiv.innerHTML = 'Perfect';
     else if (results < 90 && results > 70) scoreDiv.innerHTML = 'Great Job';
     else if (results < 70 && results > 50) scoreDiv.innerHTML = 'Good Job';
     else scoreDiv.innerHTML = 'You failed';
 
-    console.log(results);
+    console.log(`Item: ${item} | Score: ${results} | Count:${count} | Final Result: ${finalScore}`);
 });
 
 // Clear button functionality
@@ -123,3 +118,6 @@ finishBtn.addEventListener('click', function() {
     finalScore = finalScore / count;
     console.log(`Final Score: ${finalScore}`);
 });
+
+// Start the first letter
+drawLetter(item);
