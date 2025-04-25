@@ -1,6 +1,5 @@
 <div align="center">
-  <h1>Genkai-Alphabet-Letter-Quest</h1>
-  <p>玄海町立玄海みらい学園のゲーム</p>
+  <img src="./images/logo-2.png" alt="Logo" width="300">
   <p>
     <img src="https://img.icons8.com/color/48/000000/html-5.png" alt="HTML5 Icon" width="40" height="40"/>
     <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS3 Icon" width="40" height="40"/>
