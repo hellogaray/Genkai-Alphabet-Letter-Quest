@@ -100,10 +100,40 @@ playBtn.addEventListener('click', function() {
     results = Math.round(((counts.berkeleyBlue / (counts.berkeleyBlue + counts.redPantone + counts.nonPhotoBlue)) * 100));
     finalScore += results;
 
-    if (results >= 90) scoreDiv.innerHTML = 'Perfect';
-    else if (results < 90 && results > 70) scoreDiv.innerHTML = 'Great Job';
-    else if (results < 70 && results > 50) scoreDiv.innerHTML = 'Good Job';
-    else scoreDiv.innerHTML = 'You failed';
+    if (results >= 90) {
+      scoreDiv.innerHTML = `
+          <div>
+            <div class="hanamaru-stamp">💮</div>
+              <div>
+                  <strong>すごい！</strong>
+              </div>
+          </div>`;
+  } else if (results < 90 && results > 70) {
+      scoreDiv.innerHTML = `
+          <div>              
+            <div class="hanamaru-stamp">🌼</div>
+              <div>
+                  <strong>いいね！</strong>
+              </div>
+          </div>`;
+  } else if (results <= 70 && results > 50) {
+      scoreDiv.innerHTML = `
+          <div>
+            <div class="hanamaru-stamp">✿</div>
+              <div>
+                  <strong>がんばった！</strong>
+              </div>
+          </div>`;
+  } else {
+      scoreDiv.innerHTML = `
+          <div>
+              <div class="hanamaru-stamp">❌</div>
+              <div>
+                  <strong>もういっかい！</strong>
+              </div>
+          </div>`;
+  }
+  
 
     console.log(`Item: ${item} | Score: ${results} | Count:${count} | Final Result: ${finalScore}`);
 });
