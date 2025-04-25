@@ -62,6 +62,7 @@ function drawLetter(letter) {
     ctx.fillText(letter, canvas.width / 2, canvas.height / 2);
 }
 
+
 // Play button functionality
 playBtn.addEventListener('click', function() {
     item = alphabet[Math.floor(Math.random() * alphabet.length)];
