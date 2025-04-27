@@ -5,6 +5,7 @@ const submitBtn = document.getElementById('submitBtn');
 const clearBtn = document.getElementById('clearBtn');
 const finishBtn = document.getElementById('finishBtn');
 const scoreDiv = document.getElementById('score');
+const example = document.getElementById('example');
 
 // Set up the 2D drawing context for the canvas
 const ctx = canvas.getContext('2d');
