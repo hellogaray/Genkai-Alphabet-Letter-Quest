@@ -17,7 +17,6 @@ body {
   min-height: 100vh; /* Minimum height to fill viewport */
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-color);
   color: var(--text-color);
   font-family: Arial, sans-serif;
 }
@@ -61,7 +60,7 @@ canvas {
 
 /* Content area */
 #content {
-  padding-top: 5rem;
+  padding-top: 2rem;
   flex: 1;
 }
 
@@ -105,6 +104,21 @@ button:hover {
 
 .styled-link:hover {
   color: #ffffff;
+}
+
+
+#example {
+  align-content: center;
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  right: 200px;
+  top: 0;
+}
+
+#example img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Footer styles */

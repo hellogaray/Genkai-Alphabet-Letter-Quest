@@ -18,6 +18,7 @@ let drawing = false;
 let item = NaN;
 let finalScore = 0;
 let count = 0;
+let img = document.createElement("img");
 
 // Event listeners for drawing
 canvas.addEventListener('mousedown', () => drawing = true);
@@ -68,6 +69,9 @@ function drawLetter(letter) {
 playBtn.addEventListener('click', function() {
     item = alphabet[Math.floor(Math.random() * alphabet.length)];
     drawLetter(item);
+
+    img.src = `./images/${item}.png`;
+    example.appendChild(img);
 });
 
 // Submit button functionality
