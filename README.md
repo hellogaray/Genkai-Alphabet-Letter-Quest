@@ -17,7 +17,7 @@ Browser game to help kids practice writing the alphabet by tracing letters with 
 
 ## Description
 
-**Alphabet Quest: 玄海みらいのアルファベットクエスト** is a fun browser game designed for middle schoolers in Japan to practice writing the English alphabet. Players trace uppercase and lowercase letters with real-time visual feedback and receive a cute hanamaru-style grade after each try.
+**Alphabet Quest** is a fun browser game designed for middle schoolers in Japan to practice writing the English alphabet. Players trace uppercase and lowercase letters with real-time visual feedback and receive a cute hanamaru-style grade after each try.
 
 ## Features
 
