@@ -5,13 +5,18 @@ const clearBtn = document.getElementById('clearBtn');
 const finishBtn = document.getElementById('finishBtn');
 const scoreDiv = document.getElementById('score');
 
+
+// Sounds
+const clickSound = new Audio('./sound/click.mp3');
+const endSound = new Audio('./sound/end.mp3');
+
 // Set up the 2D drawing context for the canvas
 const ctx = canvas.getContext('2d');
 
 // Generate the alphabet (A-Z and a-z)
 const alphabet = [
-  ...Array.from(Array(26), (_, i) => String.fromCharCode(65 + i)),
-  ...Array.from(Array(26), (_, i) => String.fromCharCode(97 + i))
+    ...Array.from(Array(26), (_, i) => String.fromCharCode(65 + i)),
+    ...Array.from(Array(26), (_, i) => String.fromCharCode(97 + i))
 ];
 
 // Initialize variables
@@ -24,116 +29,127 @@ let img = document.createElement("img");
 
 // Mouse event listeners for drawing
 canvas.addEventListener('mousedown', (event) => {
-  drawing = true;
-  ctx.beginPath();
-  ctx.moveTo(event.offsetX, event.offsetY);
-});
+    drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(event.offsetX, event.offsetY);
+    });
 
-canvas.addEventListener('mouseup', () => {
-  drawing = false;
-  ctx.beginPath();
-});
+    canvas.addEventListener('mouseup', () => {
+    drawing = false;
+    ctx.beginPath();
+    });
 
-canvas.addEventListener('mousemove', (event) => {
-  if (!drawing) return;
+    canvas.addEventListener('mousemove', (event) => {
+    if (!drawing) return;
 
-  drawStroke(event.offsetX, event.offsetY);
+    drawStroke(event.offsetX, event.offsetY);
 });
 
 // Touch event listeners for drawing
 canvas.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  drawing = true;
+    e.preventDefault();
+    drawing = true;
 
-  const touch = e.touches[0];
-  const rect = canvas.getBoundingClientRect();
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
-  ctx.beginPath();
-  ctx.moveTo(x, y);
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
 });
 
 canvas.addEventListener('touchend', (e) => {
-  e.preventDefault();
-  drawing = false;
-  ctx.beginPath();
+    e.preventDefault();
+    drawing = false;
+    ctx.beginPath();
 });
 
 canvas.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-  if (!drawing) return;
+    e.preventDefault();
+    if (!drawing) return;
 
-  const touch = e.touches[0];
-  const rect = canvas.getBoundingClientRect();
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
 
-  drawStroke(x, y);
+    drawStroke(x, y);
 });
 
 // Common function for drawing stroke based on color detection
 function drawStroke(x, y) {
-  ctx.lineWidth = 35;
-  ctx.lineCap = 'round';
+    ctx.lineWidth = 35;
+    ctx.lineCap = 'round';
 
-  const pixel = ctx.getImageData(x, y, 1, 1).data;
-  const [r, g, b, a] = pixel;
-  const isBerkeleyBlue = (r === 168 && g === 218 && b === 220 && a === 255);
-  const isHoneydew = (r === 241 && g === 250 && b === 238 && a === 255);
+    const pixel = ctx.getImageData(x, y, 1, 1).data;
+    const [r, g, b, a] = pixel;
+    const isBerkeleyBlue = (r === 168 && g === 218 && b === 220 && a === 255);
+    const isHoneydew = (r === 241 && g === 250 && b === 238 && a === 255);
 
-  if (isBerkeleyBlue) {
-    ctx.strokeStyle = '#1D3557';
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  } else if (isHoneydew) {
-    ctx.strokeStyle = '#E63946';
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  }
+    if (isBerkeleyBlue) {
+        ctx.strokeStyle = '#1D3557';
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    } else if (isHoneydew) {
+        ctx.strokeStyle = '#E63946';
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }
 }
 
 // Function to draw the letter
 function drawLetter(letter) {
-  const img = new Image();
-  if (letter.charCodeAt(0) < 97) {
-    img.src = `./images/${letter}-Upper.png`;
-  } else {
-    img.src = `./images/${letter}-Lower.png`;
-  }
+    const img = new Image();
+    if (letter.charCodeAt(0) < 97) {
+        img.src = `./images/${letter}-Upper.png`;
+    } else {
+        img.src = `./images/${letter}-Lower.png`;
+    }
 
-  img.onload = function () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgb(241, 250, 238)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    img.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgb(241, 250, 238)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.drawImage(
-      img,
-      0, 0, img.width, img.height - 16,
-      0, 0, canvas.width, canvas.height - (16 * canvas.height / img.height)
-    );
-  };
+        ctx.drawImage(
+        img,
+        0, 0, img.width, img.height - 14,
+        0, 0, canvas.width, canvas.height - (14 * canvas.height / img.height)
+        );
+    };
 }
+
+function playClickSound() {
+    clickSound.play();
+}
+
+// Attach click event to all buttons
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', playClickSound);
+  });
+});
 
 // Play button functionality
 playBtn.addEventListener('click', function () {
-  item = alphabet[Math.floor(Math.random() * alphabet.length)];
-  console.log(item);
-  drawLetter(item);
+    item = alphabet[Math.floor(Math.random() * alphabet.length)];
+    console.log(item);
+    drawLetter(item);
 
-  const counts = { redPantone: 0, nonPhotoBlue: 0, berkeleyBlue: 0 };
-  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    const counts = { redPantone: 0, nonPhotoBlue: 0, berkeleyBlue: 0 };
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-  for (let i = 0; i < pixels.length; i += 4) {
-    const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
-    if (a !== 255) continue;
-    if (r === 230 && g === 57 && b === 70) counts.redPantone++;
-    else if (r === 168 && g === 218 && b === 220) counts.nonPhotoBlue++;
-    else if (r === 29 && g === 53 && b === 87) counts.berkeleyBlue++;
-  }
+    for (let i = 0; i < pixels.length; i += 4) {
+        const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
+        if (a !== 255) continue;
+        if (r === 230 && g === 57 && b === 70) counts.redPantone++;
+        else if (r === 168 && g === 218 && b === 220) counts.nonPhotoBlue++;
+        else if (r === 29 && g === 53 && b === 87) counts.berkeleyBlue++;
+}
 
   count++;
   results = Math.round(((counts.berkeleyBlue / (counts.berkeleyBlue + counts.redPantone + counts.nonPhotoBlue)) * 100));
@@ -170,23 +186,23 @@ playBtn.addEventListener('click', function () {
 
 // Clear button functionality
 clearBtn.addEventListener('click', function () {
-  drawLetter(item);
+    drawLetter(item);
 });
 
 // Finish button functionality
 finishBtn.addEventListener('click', function () {
-  if (count === 0) {
-    console.warn('Cannot calculate average score: count is zero.');
-    return;
-  }
+    if (count === 0) {
+        console.warn('Cannot calculate average score: count is zero.');
+        return;
+    }
+    endSound.play();
+    const averageScore = finalScore / count;
+    console.log(`Final Score: ${averageScore}`);
 
-  const averageScore = finalScore / count;
-  console.log(`Final Score: ${averageScore}`);
-
-  // Reset scores
-  results = 0;
-  finalScore = 0;
-  count = 0;
+    // Reset scores
+    results = 0;
+    finalScore = 0;
+    count = 0;
 });
 
 // Start the first letter
