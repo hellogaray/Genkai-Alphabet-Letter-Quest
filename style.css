@@ -29,6 +29,9 @@ body {
   font-family: Arial, sans-serif;
   background-image: url('./images/bg.png');
   background-color: var(--background-body);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Title styles */
@@ -38,32 +41,14 @@ body {
   text-align: center;
 }
 
-#game {
-  width: 100%;
-  
-  aspect-ratio: 543 / 550; /* Maintain original canvas ratio */
-  margin: 0 auto;
-  position: relative;
-}
-
-#myCanvas {
-  max-width: 693px;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-
-
 /* Logo */
 #logo {
-  width: 220px;
+  width: 150px;
   height: auto;
   position: relative;
   margin: 0 auto;
   display: block;
-  animation: bounce 2s infinite ease-in-out;
-  padding-bottom: 5px;
+  animation: bounce 1.5s infinite ease-in-out;
 }
 
 #score {
@@ -78,7 +63,7 @@ body {
 }
 
 .hanamaru-stamp {
-  font-size: 40px;
+  font-size: 30px;
   transform: rotate(-5deg);
   position: relative;
   animation: stampPop 0.3s ease-out;
@@ -91,7 +76,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0 20px 0 20px;
-  border-radius: 40px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, .2);
   backdrop-filter: blur(20px);
   background-color: transparent;
@@ -111,6 +96,10 @@ body {
 }
 
 /* Button styles */
+dialog button {
+ margin: 0;
+}
+
 button {
   font-size: .8rem;
   font-weight: 400;
@@ -131,6 +120,41 @@ button:hover {
   color: var(--background-color);
   background-color: var(--text-color);
   transform: translateY(2px);
+}
+
+dialog {
+  border: none;
+  border-radius: 15px;
+}
+
+dialog::backdrop {
+  background-color: black;
+  opacity: .9;
+}
+
+#scoreBoard {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#scoreImage img {
+  max-width: 150px;
+  padding-bottom: 20px;
+}
+
+#scoreResults {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#scoreText {
+  padding-bottom: 20px;
 }
 
 /* Styled link styles */

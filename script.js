@@ -4,6 +4,9 @@ const playBtn = document.getElementById('playBtn');
 const clearBtn = document.getElementById('clearBtn');
 const finishBtn = document.getElementById('finishBtn');
 const scoreDiv = document.getElementById('score');
+const dialog = document.getElementById('scoreBoard');
+const scoreText = document.getElementById('scoreText');
+const scoreImage = document.getElementById('scoreImage');
 
 
 // Sounds
@@ -104,24 +107,19 @@ function drawStroke(x, y) {
 // Function to draw the letter
 function drawLetter(letter) {
     const img = new Image();
-    if (letter.charCodeAt(0) < 97) {
-        img.src = `./images/${letter}-Upper.png`;
-    } else {
-        img.src = `./images/${letter}-Lower.png`;
-    }
-
+    img.src = (letter.charCodeAt(0) < 97)
+      ? `./images/${letter}-Upper.png`
+      : `./images/${letter}-Lower.png`;
+  
     img.onload = function () {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgb(241, 250, 238)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.drawImage(
-        img,
-        0, 0, img.width, img.height - 14,
-        0, 0, canvas.width, canvas.height - (14 * canvas.height / img.height)
-        );
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgb(241, 250, 238)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     };
-}
+  }
+  
 
 function playClickSound() {
     clickSound.play();
@@ -195,8 +193,20 @@ finishBtn.addEventListener('click', function () {
         console.warn('Cannot calculate average score: count is zero.');
         return;
     }
+    showDialog()
     endSound.play();
+
     const averageScore = finalScore / count;
+
+    const resultImg = new Image();
+    if (averageScore > 70) {
+        resultImg.src = `./images/goodHana.png`
+    } else {
+        resultImg.src = `./images/sadHana.png`
+    }
+    scoreImage.replaceChild(resultImg, scoreImage.childNodes[0]);
+
+    scoreText.innerHTML = `You got  ${averageScore} after trying ${count} times!`;
     console.log(`Final Score: ${averageScore}`);
 
     // Reset scores
@@ -207,3 +217,5 @@ finishBtn.addEventListener('click', function () {
 
 // Start the first letter
 drawLetter(item);
+
+const showDialog = (show) => show ? dialog.showModal() : dialog.close()
