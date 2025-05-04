@@ -4,7 +4,7 @@ const playBtn = document.getElementById('playBtn');
 const clearBtn = document.getElementById('clearBtn');
 const finishBtn = document.getElementById('finishBtn');
 const scoreDiv = document.getElementById('score');
-const dialog = document.getElementById('scoreBoard');
+const dialog = document.getElementById('dialogScore');
 const scoreText = document.getElementById('scoreText');
 const scoreImage = document.getElementById('scoreImage');
 
@@ -193,7 +193,7 @@ finishBtn.addEventListener('click', function () {
         console.warn('Cannot calculate average score: count is zero.');
         return;
     }
-    showDialog()
+    showDialog(true)
     endSound.play();
 
     const averageScore = finalScore / count;
