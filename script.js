@@ -7,7 +7,7 @@ const scoreDiv = document.getElementById('score');
 const dialog = document.getElementById('dialogScore');
 const scoreText = document.getElementById('scoreText');
 const scoreImage = document.getElementById('scoreImage');
-
+const playAgain = document.getElementById('playAgain');
 
 // Sounds
 const clickSound = new Audio('./sound/click.mp3');
