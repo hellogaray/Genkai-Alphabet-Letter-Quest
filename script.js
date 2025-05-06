@@ -187,6 +187,10 @@ clearBtn.addEventListener('click', function () {
     drawLetter(item);
 });
 
+playAgain.addEventListener('click', function() {
+  showDialog(false)
+})
+
 // Finish button functionality
 finishBtn.addEventListener('click', function () {
     if (count === 0) {
@@ -197,8 +201,9 @@ finishBtn.addEventListener('click', function () {
     endSound.play();
 
     const averageScore = finalScore / count;
-
     const resultImg = new Image();
+    scoreDiv.innerHTML = ``
+
     if (averageScore > 70) {
         resultImg.src = `./images/goodHana.png`
     } else {
