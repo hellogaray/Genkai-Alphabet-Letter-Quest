@@ -108,8 +108,8 @@ function drawStroke(x, y) {
 function drawLetter(letter) {
     const img = new Image();
     img.src = (letter.charCodeAt(0) < 97)
-      ? `./images/${letter}-Upper.png`
-      : `./images/${letter}-Lower.png`;
+      ? `./images/letters/${letter}-Upper.png`
+      : `./images/letters/${letter}-Lower.png`;
   
     img.onload = function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
