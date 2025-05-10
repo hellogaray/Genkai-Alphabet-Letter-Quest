@@ -204,10 +204,12 @@ finishBtn.addEventListener('click', function () {
     const resultImg = new Image();
     scoreDiv.innerHTML = ``
 
-    if (averageScore > 70) {
-        resultImg.src = `./images/goodHana.png`
+    if (averageScore > 79) {
+        resultImg.src = `./images/hanamarus/goodHana.png`
+    } if (averageScore > 59) {
+      resultImg.src = `./images/hanamarus/sadHana.png`
     } else {
-        resultImg.src = `./images/sadHana.png`
+        resultImg.src = `./images/hanamarus/sadHana.png`
     }
     scoreImage.replaceChild(resultImg, scoreImage.childNodes[0]);
 
