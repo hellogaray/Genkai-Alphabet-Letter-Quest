@@ -207,7 +207,7 @@ finishBtn.addEventListener('click', function () {
     if (averageScore > 79) {
         resultImg.src = `./images/hanamarus/goodHana.png`
     } if (averageScore > 59) {
-      resultImg.src = `./images/hanamarus/sadHana.png`
+      resultImg.src = `./images/hanamarus/mehHana.png`
     } else {
         resultImg.src = `./images/hanamarus/sadHana.png`
     }
