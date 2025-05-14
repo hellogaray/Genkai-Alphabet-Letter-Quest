@@ -132,54 +132,61 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Play button functionality
+// Play Button functionality
 playBtn.addEventListener('click', function () {
-    item = alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(item);
-    drawLetter(item);
+  item = alphabet[Math.floor(Math.random() * alphabet.length)];
 
-    const counts = { redPantone: 0, nonPhotoBlue: 0, berkeleyBlue: 0 };
-    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  const counts = { redPantone: 0, nonPhotoBlue: 0, berkeleyBlue: 0 };
+  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-    for (let i = 0; i < pixels.length; i += 4) {
-        const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
-        if (a !== 255) continue;
-        if (r === 230 && g === 57 && b === 70) counts.redPantone++;
-        else if (r === 168 && g === 218 && b === 220) counts.nonPhotoBlue++;
-        else if (r === 29 && g === 53 && b === 87) counts.berkeleyBlue++;
-}
+  for (let i = 0; i < pixels.length; i += 4) {
+      const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
+      if (a !== 255) continue;
+      if (r === 230 && g === 57 && b === 70) counts.redPantone++;
+      else if (r === 168 && g === 218 && b === 220) counts.nonPhotoBlue++;
+      else if (r === 29 && g === 53 && b === 87) counts.berkeleyBlue++;
+  }
 
   count++;
   results = Math.round(((counts.berkeleyBlue / (counts.berkeleyBlue + counts.redPantone + counts.nonPhotoBlue)) * 100));
   finalScore += results;
 
+  let feedback = '';
   if (results >= 90) {
-    scoreDiv.innerHTML = `
-      <div>
-        <div class="hanamaru-stamp">💮</div>
-        <div><strong>すごい！</strong></div>
-      </div>`;
+      feedback = `
+        <div>
+          <div class="hanamaru-stamp">💮</div>
+          <div><strong>すごい！</strong></div>
+        </div>`;
   } else if (results < 90 && results > 70) {
-    scoreDiv.innerHTML = `
-      <div>
-        <div class="hanamaru-stamp">🌼</div>
-        <div><strong>いいね！</strong></div>
-      </div>`;
+      feedback = `
+        <div>
+          <div class="hanamaru-stamp">🌼</div>
+          <div><strong>いいね！</strong></div>
+        </div>`;
   } else if (results <= 70 && results > 50) {
-    scoreDiv.innerHTML = `
-      <div>
-        <div class="hanamaru-stamp">✿</div>
-        <div><strong>がんばった！</strong></div>
-      </div>`;
+      feedback = `
+        <div>
+          <div class="hanamaru-stamp">✿</div>
+          <div><strong>がんばった！</strong></div>
+        </div>`;
   } else {
-    scoreDiv.innerHTML = `
-      <div>
-        <div class="hanamaru-stamp">❌</div>
-        <div><strong>もういっかい！</strong></div>
-      </div>`;
+      feedback = `
+        <div>
+          <div class="hanamaru-stamp">❌</div>
+          <div><strong>もういっかい！</strong></div>
+        </div>`;
   }
 
-  console.log(`Item: ${item} | Score: ${results} | Count: ${count} | Final Result: ${finalScore}`);
+  // Show feedback
+  scoreDiv.innerHTML = feedback;
+
+  // Delay before clearing and drawing new letter
+  setTimeout(() => {
+      scoreDiv.innerHTML = ''; // Clear previous score
+      drawLetter(item);        // Then draw the next letter
+      console.log(`Item: ${item} | Score: ${results} | Count: ${count} | Final Result: ${finalScore}`);
+  }, 1000); // Adjust the delay time (ms) as needed
 });
 
 // Clear button functionality
@@ -187,9 +194,8 @@ clearBtn.addEventListener('click', function () {
     drawLetter(item);
 });
 
-playAgain.addEventListener('click', function() {
-  showDialog(false)
-})
+// Dialog functionality
+const showDialog = (show) => show ? dialog.showModal() : dialog.close()
 
 // Finish button functionality
 finishBtn.addEventListener('click', function () {
@@ -204,9 +210,9 @@ finishBtn.addEventListener('click', function () {
     const resultImg = new Image();
     scoreDiv.innerHTML = ``
 
-    if (averageScore > 79) {
+    if (averageScore > 69) {
         resultImg.src = `./images/hanamarus/goodHana.png`
-    } if (averageScore > 59) {
+    } else if (averageScore < 70 && averageScore > 49 ) {
       resultImg.src = `./images/hanamarus/mehHana.png`
     } else {
         resultImg.src = `./images/hanamarus/sadHana.png`
@@ -222,7 +228,11 @@ finishBtn.addEventListener('click', function () {
     count = 0;
 });
 
+// Close dialog button 
+playAgain.addEventListener('click', function() {
+  showDialog(false)
+})
+
 // Start the first letter
 drawLetter(item);
 
-const showDialog = (show) => show ? dialog.showModal() : dialog.close()
