@@ -165,6 +165,11 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
+/* Prevent scrolling/zooming on touch devices while drawing */
+canvas {
+  touch-action: none;
+}
+
 /* Animations */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(-10px); }
