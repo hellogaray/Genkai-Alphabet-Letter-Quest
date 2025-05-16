@@ -1,4 +1,6 @@
-/* Define CSS custom properties */
+/* ----------------------------------- */
+/* CSS Custom Properties (Variables)   */
+/* ----------------------------------- */
 :root {
   --grid-cols: 1;
   --grid-rows: 1;
@@ -17,12 +19,14 @@
   --berkeley-blue: #1d3557ff;
 }
 
-/* Body styles */
+/* ------------------- */
+/* Base Body Styling   */
+/* ------------------- */
 body {
   margin: 0;
   display: flex; 
-  flex-direction: column; /* Stack children vertically */
-  min-height: 100vh; /* Minimum height to fill viewport */
+  flex-direction: column;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   color: var(--text-color);
@@ -34,7 +38,9 @@ body {
   background-size: cover;
 }
 
-/* Title styles */
+/* ------------------ */
+/* Title + Logo       */
+/* ------------------ */
 #title {
   margin-top: 10px;
   color: var(--text-color);
@@ -51,6 +57,9 @@ body {
   animation: bounce 1.5s infinite ease-in-out;
 }
 
+/* ------------------ */
+/* Score + Feedback   */
+/* ------------------ */
 #score {
   height: 50px;
   padding: 10px;
@@ -71,6 +80,9 @@ body {
   filter: drop-shadow(2px 2px 0 #f59e9e); /* splash effect */
 }
 
+/* ------------------ */
+/* Layout Containers  */
+/* ------------------ */
 #container {
   display: flex;
   flex-direction: column;
@@ -95,7 +107,9 @@ body {
   justify-content: center;
 }
 
-/* Button styles */
+/* ------- */
+/* Buttons */
+/* ------- */
 dialog button {
  margin: 0;
 }
@@ -122,6 +136,9 @@ button:hover {
   transform: translateY(2px);
 }
 
+/* ------- */
+/* Dialog  */
+/* ------- */
 dialog {
   border: none;
   border-radius: 15px;
@@ -132,6 +149,9 @@ dialog::backdrop {
   opacity: .9;
 }
 
+/* ------------------ */
+/* Scoreboard Layout  */
+/* ------------------ */
 #scoreBoard {
   box-sizing: border-box;
   display: flex;
@@ -157,7 +177,9 @@ dialog::backdrop {
   padding-bottom: 20px;
 }
 
-/* Styled link styles */
+/* ------------------ */
+/* Styled Link        */
+/* ------------------ */
 .styled-link {
   font-size: 14px;
   text-decoration: none;
@@ -171,7 +193,9 @@ dialog::backdrop {
   color: #ffffff;
 }
 
-
+/* ------------------ */
+/* Example Section    */
+/* ------------------ */
 #example {
   align-content: center;
   height: 100%;
@@ -186,7 +210,9 @@ dialog::backdrop {
   height: auto;
 }
 
-/* Footer styles */
+/* ------------------ */
+/* Footer Styling     */
+/* ------------------ */
 footer {
   display: flex;
   justify-content: center;
@@ -216,7 +242,9 @@ canvas {
   touch-action: none;
 }
 
-/* Animations */
+/* ------------------ */
+/* Animations         */
+/* ------------------ */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(-10px); }
   100% { opacity: 1; transform: translateY(0); }
