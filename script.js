@@ -195,8 +195,14 @@ clearBtn.addEventListener('click', function () {
 });
 
 // Dialog functionality
-const showDialog = (show) => show ? dialog.showModal() : dialog.close()
-
+const showDialog = (show) => {
+  if (show) {
+    dialog.classList.add('fade-in');
+    dialog.showModal();
+  } else {
+    dialog.close();
+  }
+};
 // Finish button functionality
 finishBtn.addEventListener('click', function () {
     if (count === 0) {
