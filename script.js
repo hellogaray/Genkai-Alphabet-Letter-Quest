@@ -37,15 +37,15 @@ canvas.addEventListener('mousedown', (event) => {
     ctx.moveTo(event.offsetX, event.offsetY);
     });
 
-    canvas.addEventListener('mouseup', () => {
-    drawing = false;
-    ctx.beginPath();
-    });
+canvas.addEventListener('mouseup', () => {
+  drawing = false;
+  ctx.beginPath();
+});
 
-    canvas.addEventListener('mousemove', (event) => {
-    if (!drawing) return;
+canvas.addEventListener('mousemove', (event) => {
+  if (!drawing) return;
 
-    drawStroke(event.offsetX, event.offsetY);
+  drawStroke(event.offsetX, event.offsetY);
 });
 
 // Touch event listeners for drawing
@@ -120,7 +120,6 @@ function drawLetter(letter) {
     };
   }
   
-
 function playClickSound() {
     clickSound.play();
 }
@@ -203,35 +202,36 @@ const showDialog = (show) => {
     dialog.close();
   }
 };
+
 // Finish button functionality
 finishBtn.addEventListener('click', function () {
-    if (count === 0) {
-        console.warn('Cannot calculate average score: count is zero.');
-        return;
-    }
-    showDialog(true)
-    endSound.play();
+  if (count === 0) {
+      console.warn('Cannot calculate average score: count is zero.');
+      return;
+  }
+  showDialog(true)
+  endSound.play();
 
-    const averageScore = finalScore / count;
-    const resultImg = new Image();
-    scoreDiv.innerHTML = ``
+  const averageScore = finalScore / count;
+  const resultImg = new Image();
+  scoreDiv.innerHTML = ``
 
-    if (averageScore > 69) {
-        resultImg.src = `./images/hanamarus/goodHana.png`
-    } else if (averageScore < 70 && averageScore > 49 ) {
-      resultImg.src = `./images/hanamarus/mehHana.png`
-    } else {
-        resultImg.src = `./images/hanamarus/sadHana.png`
-    }
-    scoreImage.replaceChild(resultImg, scoreImage.childNodes[0]);
+  if (averageScore > 69) {
+      resultImg.src = `./images/hanamarus/goodHana.png`
+  } else if (averageScore < 70 && averageScore > 49 ) {
+    resultImg.src = `./images/hanamarus/mehHana.png`
+  } else {
+      resultImg.src = `./images/hanamarus/sadHana.png`
+  }
+  scoreImage.replaceChild(resultImg, scoreImage.childNodes[0]);
 
-    scoreText.innerHTML = `You got  ${averageScore} after trying ${count} times!`;
-    console.log(`Final Score: ${averageScore}`);
+  scoreText.innerHTML = `You got  ${averageScore} after trying ${count} times!`;
+  console.log(`Final Score: ${averageScore}`);
 
-    // Reset scores
-    results = 0;
-    finalScore = 0;
-    count = 0;
+  // Reset scores
+  results = 0;
+  finalScore = 0;
+  count = 0;
 });
 
 // Close dialog button 
