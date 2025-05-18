@@ -1,65 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>玄海みらいのアルファベットクエスト</title>
 
-  <!-- Basic favicon -->
+  <!-- Favicon and Web App Icons -->
   <link rel="icon" type="image/x-icon" href="./images/favicon_io/favicon.ico">
-
-  <!-- For iOS devices -->
   <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png">
-
-  <!-- For Android devices -->
   <link rel="icon" type="image/png" sizes="192x192" href="./images/favicon_io/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./images/favicon_io/android-chrome-512x512.png">
-
-  <!-- Web App Manifest for PWAs -->
   <link rel="manifest" href="./images/favicon_io/site.webmanifest">
 
   <link rel="stylesheet" href="style.css">
-
 </head>
+
 <body>
   <!-- Logo & Header -->
-  <header id="title">
-    <img src="./images/logo.png" id="logo">
+  <header id="title" role="banner">
+    <img src="./images/logo.png" id="logo" alt="ゲームのロゴ: 玄海みらいのアルファベットクエスト">
   </header>
   
   <!-- Main content area -->
-  <main id="content">
-    <section id="container" aria-label="Drawing area">
-      <!-- Results -->
-      <div id="score"></div>
+  <main id="content" role="main">
+    <section id="container" aria-label="ゲームプレイエリア">
+      
+      <!-- Score (Live region for dynamic updates) -->
+      <div id="score" aria-live="polite"></div>
 
-      <!-- Canvas -->
+      <!-- Game Canvas -->
       <div id="game">
-        <canvas id="myCanvas" width="433" height="430"></canvas>
+        <canvas id="myCanvas" width="433" height="430" role="img" aria-label="お絵かきキャンバス"></canvas>
       </div>
 
-      <!-- Bottom menu navigation -->
-      <nav id="bottomMenu" aria-label="Sidebar">
-        <button id="playBtn">Play</button>
-        <button id="clearBtn">Clear</button>
-        <button id="finishBtn">Finish</button>
+      <!-- Bottom Menu -->
+      <nav id="bottomMenu" aria-label="ゲームナビゲーション">
+        <button id="playBtn" type="button" aria-label="つぎのもじをひょうじ (Show next letter)">
+          <span class="jp-text">つぎへ</span><br>
+          <span class="en-text">Next</span>
+        </button>
+        <button id="clearBtn" type="button" aria-label="えをけす (Clear drawing)">
+          <span class="jp-text">けす</span><br>
+          <span class="en-text">Clear</span>
+        </button>
+        <button id="finishBtn" type="button" aria-label="ゲームをおわる (Finish game)">
+          <span class="jp-text">おわる</span><br>
+          <span class="en-text">Finish</span>
+        </button>
+        
       </nav>
     </section>
 
-    <!-- Score Board -->
-     <dialog id="dialogScore">
-        <div id="scoreBoard">
-          <h2>Final Results</h2>
-          <div id="scoreImage"><img src="./images/goodHana.png"></div>
-          <span id="scoreText"></span>
-          <button id="playAgain">Again</button>
-        </div>
-     </dialog>
+    <!-- Score Dialog -->
+    <dialog id="dialogScore" aria-labelledby="finalResultsTitle" aria-modal="true" role="dialog">
+      <div id="scoreBoard">
+        <h2 id="finalResultsTitle">最終結果</h2>
+          <div id="scoreImage">
+          </div>
+          <span id="scoreText" aria-live="polite"></span>
+          <button id="playAgain" type="button" aria-label="もういちどプレイ (Play again)">
+            <span class="jp-text">もういちど</span><br>
+            <span class="en-text">Play again</span>
+          </button>
+    </dialog>
   </main>
 
   <!-- Footer -->
   <footer>
-    <a href="https://github.com/hellogaray" title="Github Link" class="styled-link">@hellogaray</a>
+    <a href="https://github.com/hellogaray" title="GitHubプロフィールへのリンク" class="styled-link" aria-label="GitHubプロフィール: @hellogaray">@hellogaray</a>
   </footer>
 
   <!-- Script -->

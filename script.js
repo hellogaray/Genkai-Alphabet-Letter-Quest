@@ -225,7 +225,10 @@ finishBtn.addEventListener('click', function () {
   }
   scoreImage.replaceChild(resultImg, scoreImage.childNodes[0]);
 
-  scoreText.innerHTML = `You got  ${averageScore} after trying ${count} times!`;
+  scoreText.innerHTML = `
+  スコア: ${averageScore}（${count}回チャレンジしたよ！）<br>
+  Score: ${averageScore} after ${count} tries!
+  `;
   console.log(`Final Score: ${averageScore}`);
 
   // Reset scores
