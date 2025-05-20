@@ -212,7 +212,7 @@ finishBtn.addEventListener('click', function () {
   showDialog(true)
   endSound.play();
 
-  const averageScore = finalScore / count;
+  const averageScore = Math.round(finalScore / count);
   const resultImg = new Image();
   scoreDiv.innerHTML = ``
 
